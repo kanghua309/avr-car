@@ -12,8 +12,8 @@ const TRIGGER_UP_TIME: u16 = 10u16;
 /// struct sensor_unit is instantiated in main, as it needs
 /// pins and timer.
 pub struct SensorUnit {
-    pub trig: arduino_hal::hal::port::Pin<Output, arduino_hal::hal::port::PB4>,
-    pub echo: arduino_hal::hal::port::Pin<Input<Floating>, arduino_hal::hal::port::PB3>,
+    pub trig: arduino_hal::hal::port::Pin<Output, arduino_hal::hal::port::PD5>,
+    pub echo: arduino_hal::hal::port::Pin<Input<Floating>, arduino_hal::hal::port::PD4>,
     pub timer: avr_device::atmega328p::TC1,
 }
 

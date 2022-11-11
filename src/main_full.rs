@@ -44,7 +44,7 @@ fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
     let mut serial = arduino_hal::default_serial!(dp, pins, 57600);
-    ufmt::uwriteln!(&mut serial, "Hello from Arduino 1!\r").void_unwrap();
+    ufmt::uwriteln!(&mut serial, "Hello from Arduino!\r").void_unwrap();
 
     let mut delay = arduino_hal::Delay::new();
 
@@ -59,20 +59,23 @@ fn main() -> ! {
     };
 
     let mut sensor_unit = SensorUnit {
-        trig: pins.d5.into_output(),
-        echo: pins.d4,
+        trig: pins.a0.into_output(),
+        // floating input is
+        // set by default so we can configure echo without ddr
+        echo: pins.a1,
         timer: timer1,
     };
+
     // downgrading the pins allow to put them in an array and simplify functions:
     // according to docs : Downgrade this pin into a type that is generic over all pins.
-    let left_forw = pins.d8.into_output().downgrade();
-    let left_back = pins.d9.into_output().downgrade();
-    let right_forw = pins.d11.into_output().downgrade();
-    let right_back = pins.d10.into_output().downgrade();
+    let left_forw = pins.d4.into_output().downgrade();
+    let left_back = pins.d5.into_output().downgrade();
+    let right_forw = pins.d6.into_output().downgrade();
+    let right_back = pins.d7.into_output().downgrade();
 
     // we have now mutable wheels that can be sent to motor functions
     let mut wheels = [left_forw, left_back, right_forw, right_back];
-    ufmt::uwriteln!(&mut serial, "Hello from Arduino 2!\r").void_unwrap();
+    ufmt::uwriteln!(&mut serial, "Hello from Arduino!\r").void_unwrap();
 
     'outer: loop {
         servo_unit.look_front();

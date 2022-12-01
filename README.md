@@ -33,6 +33,10 @@ The circuit diagram is below:
 2. Compile the project, or modify the executable flash_it.sh if you want to use it. It contains those lines:
 
 ```
+rustup install nightly-2022-11-09
+rustup default nightly-2022-11-09
+rustup component add rust-src --toolchain nightly-2022-11-09-x86_64-apple-darwin
+
 // build in nightly
 set -e cargo +nightly build
 
@@ -57,3 +61,4 @@ You flash on the board with avrdude with your usb serial and your own elf file. 
 <span>3.</span> you can now run ./flash_it.sh and have the car running (hopefully).
 
 <img src="here_comes_tiger_3.gif" width="400" />
+

@@ -3,7 +3,7 @@
 //! The sensor module takes a SensorUnit value struct with a trigger, an echo
 //! and a timer. As per HC-SR04 documentation, the trigger needs to be up 10 μs
 
-use arduino_hal::hal::port::mode::{Input, Output,Floating};
+use arduino_hal::hal::port::mode::{Input, Output, Floating};
 use arduino_hal::prelude::*;
 
 

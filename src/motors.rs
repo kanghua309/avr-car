@@ -2,6 +2,7 @@
 //! Handles the movement functions.
 //! It unpacks the wheel pins in an array.
 
+use embedded_hal::digital::v2::OutputPin;
 use arduino_hal::prelude::*;
 const TURNING_TIME: u16 = 700u16;
 
